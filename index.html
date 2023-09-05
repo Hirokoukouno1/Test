@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>掲示板</title>
+    <style>
+        /* スタイリング */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #messages {
+            list-style-type: none;
+            padding: 0;
+        }
+        #messages li {
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        #message-input {
+            width: 100%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>掲示板</h1>
+    
+    <!-- メッセージ一覧 -->
+    <ul id="messages"></ul>
+    
+    <!-- 新しいメッセージの投稿フォーム -->
+    <input type="text" id="message-input" placeholder="メッセージを入力">
+    <button onclick="sendMessage()">投稿</button>
+    
+    <script>
+        // JavaScriptでメッセージを追加
+        function sendMessage() {
+            var messageInput = document.getElementById('message-input');
+            var messageText = messageInput.value;
+            if (messageText.trim() !== '') {
+                var messagesList = document.getElementById('messages');
+                var listItem = document.createElement('li');
+                listItem.textContent = messageText;
+                messagesList.appendChild(listItem);
+                messageInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
