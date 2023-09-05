@@ -34,6 +34,17 @@
     <button onclick="sendMessage()">投稿</button>
     
     <script>
+        // ページ読み込み時に保存されたメッセージを取得して表示
+        window.onload = function() {
+            var messagesList = document.getElementById('messages');
+            var savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+            savedMessages.forEach(function(messageText) {
+                var listItem = document.createElement('li');
+                listItem.textContent = messageText;
+                messagesList.appendChild(listItem);
+            });
+        };
+        
         // JavaScriptでメッセージを追加
         function sendMessage() {
             var messageInput = document.getElementById('message-input');
@@ -44,6 +55,11 @@
                 listItem.textContent = messageText;
                 messagesList.appendChild(listItem);
                 messageInput.value = '';
+                
+                // メッセージを保存
+                var savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+                savedMessages.push(messageText);
+                localStorage.setItem('messages', JSON.stringify(savedMessages));
             }
         }
     </script>
